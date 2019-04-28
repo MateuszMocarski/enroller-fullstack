@@ -4,7 +4,7 @@
     <input type="text" v-model="user.login">
     <label>Hasło</label>
     <input type="password" v-model="user.password">
-    <button type="submit">{{ labelOfTheButton }}</button>
+    <button type="submit">{{ buttonLabel }}</button>
   </form>
 </template>
 
@@ -19,12 +19,8 @@
         methods: {
             enter() {
                 this.$emit("login", this.user);
-            }
-        },
-        computed: {
-            labelOfTheButton() {
-                return this.buttonLabel || 'Zaloguj się';
-            }
+            }            
         }
+        
     };
 </script>
