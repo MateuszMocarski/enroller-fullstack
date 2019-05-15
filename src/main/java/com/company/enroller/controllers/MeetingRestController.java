@@ -4,7 +4,7 @@ import com.company.enroller.model.Meeting;
 import com.company.enroller.model.Participant;
 import com.company.enroller.persistence.MeetingService;
 import com.company.enroller.persistence.ParticipantService;
-import com.company.enroller.security.UserProvider;
+//import com.company.enroller.security.UserProvider;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -63,22 +63,22 @@ public class MeetingRestController {
 		return new ResponseEntity<Participant>(HttpStatus.NO_CONTENT);
 	}
 
-	@RequestMapping(value = "/{id}/participants", method = RequestMethod.POST)
-	public ResponseEntity<?> addMeetingParticipant(@PathVariable("id") long meetingID) {
-		String username = UserProvider.getUsername();
-		Participant participant = participantService.findByLogin(username);
-		Meeting meeting = meetingService.findByID(meetingID);
-
-		if (meeting == null) {
-			return new ResponseEntity<>("Meeting does not exist", HttpStatus.BAD_REQUEST);
-		}
-		try {
-			Meeting result = (Meeting) meetingService.addParticipantToMeeting(meeting, participant);
-			return new ResponseEntity<>(result, HttpStatus.CREATED);
-		} catch (Exception e) {
-			return new ResponseEntity<>("Participant is in this meeting!", HttpStatus.CONFLICT);
-		}
-	}
+//	@RequestMapping(value = "/{id}/participants", method = RequestMethod.POST)
+//	public ResponseEntity<?> addMeetingParticipant(@PathVariable("id") long meetingID) {
+//		String username = UserProvider.getUsername();
+//		Participant participant = participantService.findByLogin(username);
+//		Meeting meeting = meetingService.findByID(meetingID);
+//
+//		if (meeting == null) {
+//			return new ResponseEntity<>("Meeting does not exist", HttpStatus.BAD_REQUEST);
+//		}
+//		try {
+//			Meeting result = (Meeting) meetingService.addParticipantToMeeting(meeting, participant);
+//			return new ResponseEntity<>(result, HttpStatus.CREATED);
+//		} catch (Exception e) {
+//			return new ResponseEntity<>("Participant is in this meeting!", HttpStatus.CONFLICT);
+//		}
+//	}
 
 	@RequestMapping(value = "/{id}/participants/{login}", method = RequestMethod.DELETE)
 	public ResponseEntity<?> removeMeetingParticipant(@PathVariable("id") long meetingId,
