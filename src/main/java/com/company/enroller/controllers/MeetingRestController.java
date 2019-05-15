@@ -64,7 +64,7 @@ public class MeetingRestController {
 	}
 
 	@RequestMapping(value = "/{id}/participants", method = RequestMethod.POST)
-	public ResponseEntity<?> addParticipant(@PathVariable("id") long meetingID) {
+	public ResponseEntity<?> addMeetingParticipant(@PathVariable("id") long meetingID) {
 		String username = UserProvider.getUsername();
 		Participant participant = participantService.findByLogin(username);
 		Meeting meeting = meetingService.findByID(meetingID);
@@ -81,7 +81,7 @@ public class MeetingRestController {
 	}
 
 	@RequestMapping(value = "/{id}/participants/{login}", method = RequestMethod.DELETE)
-	public ResponseEntity<?> removeParticipant(@PathVariable("id") long meetingId,
+	public ResponseEntity<?> removeMeetingParticipant(@PathVariable("id") long meetingId,
 			@PathVariable("login") String login) {
 
 		Meeting meetingWithoutParticipant = meetingService.removeParticipantFromMeeting(meetingId, login);
