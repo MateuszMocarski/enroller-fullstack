@@ -72,4 +72,9 @@ public class Meeting {
         return participants;
     }
 
+	public boolean hasParticipant(Participant participant) {
+		
+		return participants.contains(participant);
+	}
+
 }
